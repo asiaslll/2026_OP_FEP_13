@@ -1,0 +1,134 @@
+1)#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+        
+    char sentence[256];
+    int vowels_count = 0;
+    int consonants_count = 0;
+
+    printf("Введіть речення: ");
+    // Зчитуємо рядок з консолі (безпечніший аналог gets)
+    fgets(sentence, sizeof(sentence), stdin);
+
+    // Визначаємо голосні та приголосні української абетки (у нижньому та верхньому регістрах)
+    char vowels[] = "аеєиіїоуюяАЕЄИІЇОУЮЯ";
+    char consonants[] = "бвгґджзклмнпрстфхцчшщБВГҐДЖЗКЛМНПРСТФХЦЧШЩ";
+
+    for (int i = 0; sentence[i] != '\0'; i++) {
+        char ch = sentence[i];
+        
+        // Перевірка на голосність
+        int is_vowel = 0;
+        for (int j = 0; vowels[j] != '\0'; j++) {
+            if (ch == vowels[j]) {
+                is_vowel = 1;
+                break;
+            }
+        }
+        
+        // Перевірка на приголосність
+        int is_consonant = 0;
+        for (int j = 0; consonants[j] != '\0'; j++) {
+            if (ch == consonants[j]) {
+                is_consonant = 1;
+                break;
+            }
+        }
+
+        if (is_vowel) {
+            vowels_count++;
+        } else if (is_consonant) {
+            consonants_count++;
+        }
+    }
+
+    printf("Кількість голосних: %d\n", vowels_count);
+    printf("Кількість приголосних: %d\n", consonants_count);
+
+    return 0;
+}
+
+
+
+
+2)#include <stdio.h>
+
+int main() {
+    // Задайте свій порядковий номер у журналі
+    const int MY_NUMBER = 15;
+    
+    int total_sum = 0;
+    int i = 1;
+
+    while (i <= 100) {
+        // Виключаємо порядковий номер та число 33
+        if (i == MY_NUMBER || i == 33) {
+            i++;
+            continue;
+        }
+
+        total_sum += i;
+        i++;
+    }
+
+    printf("Сума перших 100 чисел (за винятком номера %d та числа 33) дорівнює: %d\n", MY_NUMBER, total_sum);
+
+    return 0;
+}
+
+
+
+
+
+3)#include <stdio.h>
+
+int main() {
+    int n;
+    
+    // Отримання числа N з перевіркою діапазону [7; 12]
+    while (1) {
+        printf("Введіть ціле число N від 7 до 12: ");
+        if (scanf("%d", &n) == 1 && n >= 7 && n <= 12) {
+            break;
+        }
+        printf("Помилка! Число має бути цілим і знаходитися в діапазоні від 7 до 12.\n");
+        // Очищення буфера вводу у разі некоректного введення
+        while (getchar() != '\n');
+    }
+
+    double numbers[12]; // Масив для зберігання до 12 чисел
+    double sum = 0;
+
+    printf("Введіть %d дійсних чисел:\n", n);
+    for (int i = 0; i < n; i++) {
+        printf("Число %d: ", i + 1);
+        scanf("%lf", &numbers[i]);
+        sum += numbers[i];
+    }
+
+    // Ініціалізація мінімуму та максимуму першим елементом масиву
+    double min_val = numbers[0];
+    double max_val = numbers[0];
+
+    for (int i = 1; i < n; i++) {
+        if (numbers[i] < min_val) {
+            min_val = numbers[i];
+        }
+        if (numbers[i] > max_val) {
+            max_val = numbers[i];
+        }
+    }
+
+    double average = sum / n;
+
+    // Виведення результатів
+    printf("\n--- Результати обчислень ---\n");
+    printf("Сума: %.2f\n", sum);
+    printf("Середнє арифметичне: %.2f\n", average);
+    printf("Мінімальне значення: %.2f\n", min_val);
+    printf("Максимальне значення: %.2f\n", max_val);
+
+    return 0;
+}
