@@ -6,6 +6,7 @@ int main() {
     scanf("%d", &n);
     if(n > 12 || n < 7){
         printf("Введіть коректне число");
+        return 1;   
     }
     double array[n];
 

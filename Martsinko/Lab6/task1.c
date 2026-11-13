@@ -16,7 +16,7 @@ int main() {
     wscanf(L"%255l[^\n]", sentence);
     for (int i = 0; sentence[i] != L'\0'; i++) {
         wchar_t ch = towlower(sentence[i]); 
-        if (wcschr(vowels, ch)) { // wcschr шукає збіги в списку
+        if (wcschr(vowels, ch)) { 
             vowels_count++;
         } else if (wcschr(consonants, ch)) {
             consonants_count++;
